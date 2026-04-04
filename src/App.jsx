@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AOS from "aos";
 import { useEffect } from "react";
 import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -29,16 +29,15 @@ function App() {
   }, []);
 
   return (
-    
     <Router>
-      <div className="flex flex-col min-h-screen bg-gray-50">
-        {/* Main Content */}
+      <div className="flex flex-col min-h-screen bg-white">
+
         <div className="flex-1 pb-20">
           <ScrollToTop />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/jobs" element={<Jobs />} />
-            <Route path="/job/details" element={<JobDetails />} />
+            <Route path="/job/:id" element={<JobDetails />} />
             <Route path="/hireme" element={<HireMe />} />
             <Route path="/messages" element={<Messages />} />
             <Route path="/chat" element={<Chat />} />
@@ -46,8 +45,10 @@ function App() {
           </Routes>
         </div>
 
-        {/* Bottom Navbar */}
+        <Footer />
         <Navbar />
+
+        {/* Tracking */}
         <Analytics />
         <SpeedInsights />
       </div>
