@@ -10,8 +10,11 @@ const navItems = [
 ];
 
 function Navbar() {
-  const handleClick = () => {
-    if (navigator.vibrate) {
+  const triggerHaptic = () => {
+    if (
+      typeof navigator !== "undefined" &&
+      typeof navigator.vibrate === "function"
+    ) {
       navigator.vibrate(50);
     }
   };
@@ -25,7 +28,8 @@ function Navbar() {
             <NavLink
               key={index}
               to={item.path}
-              onClick={handleClick}
+              onPointerDown={triggerHaptic}
+              onClick={triggerHaptic}
               className="flex-1"
             >
               {({ isActive }) => (
