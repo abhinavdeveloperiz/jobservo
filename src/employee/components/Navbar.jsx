@@ -10,28 +10,13 @@ const navItems = [
 ];
 
 function Navbar() {
-  const triggerHaptic = () => {
-    if (
-      typeof navigator !== "undefined" &&
-      typeof navigator.vibrate === "function"
-    ) {
-      navigator.vibrate(50);
-    }
-  };
-
   return (
     <div className="fixed inset-x-4 bottom-4 z-50 rounded-full bg-white/50 border border-white shadow-2xl backdrop-blur-xl">
       <div className="mx-auto flex max-w-3xl items-center justify-between gap-2 px-4 py-3">
         {navItems.map((item, index) => {
           const Icon = item.icon;
           return (
-            <NavLink
-              key={index}
-              to={item.path}
-              onPointerDown={triggerHaptic}
-              onClick={triggerHaptic}
-              className="flex-1"
-            >
+            <NavLink key={index} to={item.path} className="flex-1">
               {({ isActive }) => (
                 <div className="flex flex-col items-center gap-1 text-[11px] transition">
                   <div
